@@ -1,0 +1,33 @@
+// Last updated: 19/12/2025, 19:22:03
+class Spreadsheet {
+public:
+    unordered_map<string, unsigned> mp;
+    Spreadsheet(int rows) {
+    }
+    
+    void setCell(const string& cell, int value) {
+        mp[cell]=value;
+    }
+    
+    void resetCell(const string& cell) {
+        mp[cell]=0;
+    }
+    
+    int getValue(const string& formula) {
+        int m=formula.find('+');
+        int x, y;
+        if (formula[1]>='A') x=mp[formula.substr(1, m-1)];
+        else x=stoi(formula.substr(1, m-1));
+        if (formula[m+1]>='A') y=mp[formula.substr(m+1)];
+        else y=stoi(formula.substr(m+1));
+        return x+y;
+    }
+};
+
+/**
+ * Your Spreadsheet object will be instantiated and called as such:
+ * Spreadsheet* obj = new Spreadsheet(rows);
+ * obj->setCell(cell,value);
+ * obj->resetCell(cell);
+ * int param_3 = obj->getValue(formula);
+ */
